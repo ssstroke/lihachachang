@@ -7,7 +7,7 @@ import com.theokanning.openai.service.OpenAiService;
 import java.util.List;
 
 public class TranslationService {
-    private String OPENAI_API_TOKEN = "";
+    private final String OPENAI_API_TOKEN;
 
     public TranslationService(String token) {
         this.OPENAI_API_TOKEN = token;
