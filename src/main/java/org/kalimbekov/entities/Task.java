@@ -2,7 +2,6 @@ package org.kalimbekov.entities;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 
 import java.util.UUID;
 
