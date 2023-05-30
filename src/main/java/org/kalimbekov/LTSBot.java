@@ -137,7 +137,7 @@ public class LTSBot extends TelegramLongPollingBot {
             String answer = callbackQuery.getData();
 
             Task task = state.getTask();
-            String correctAnswer = task.getAnswerOptions()[task.getAnswer()];
+            String correctAnswer = task.getAnswerOptions()[task.getAnswer() - 1];
 
             if (answer.equals(correctAnswer)) {
                 user.setPoints(user.getPoints() + task.getPoints());
