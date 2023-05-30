@@ -247,4 +247,24 @@ public class DBService {
                 wordRow.getString("answer")
         );
     }
+
+    public void addResponse(String prompt, String response) {
+        db.insert("gpt_responses",
+                new String[] { "id", "prompt", "answer" },
+                new Object[] { UUID.randomUUID(), prompt.toLowerCase(), response.toLowerCase() }
+        );
+    }
+
+    public String getResponseByPrompt(String prompt) {
+        SelectResults resultRows = db.selectBuilder("gpt_responses")
+                .select("answer", "prompt")
+                .where(QueryCondition.equals("prompt", prompt))
+                .limit(1)
+                .execute();
+
+        if (resultRows.size() == 0)
+            return null;
+
+        return resultRows.get(0).getString("answer");
+    }
 }

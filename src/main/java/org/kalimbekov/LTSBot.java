@@ -171,15 +171,25 @@ public class LTSBot extends TelegramLongPollingBot {
                     } else {
                         sendText(user.getChatId(), "Формирую ответ ⏳");
 
-                        String translation = translationService.getTranslation(
-                                languageAndText[0],
-                                languageAndText[1]
+                        String cachedAnswer = db.getResponseByPrompt(
+                                languageAndText[0] + "_" + languageAndText[1]
                         );
+
+                        if (cachedAnswer == null) {
+                            String translation = translationService.getTranslation(
+                                    languageAndText[0],
+                                    languageAndText[1]
+                            );
+
+                            sendText(user.getChatId(), translation);
+
+                            db.addResponse(languageAndText[0] + "_" + languageAndText[1], translation);
+                        } else {
+                            sendText(user.getChatId(), cachedAnswer);
+                        }
 
                         state.setDescription(null);
                         db.updateState(state);
-
-                        sendText(user.getChatId(), translation);
                     }
                 } case State.AWAITS_TRANSLATION -> {
                     Text text = state.getText();
