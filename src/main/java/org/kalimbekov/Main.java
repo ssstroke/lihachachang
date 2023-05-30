@@ -32,7 +32,19 @@ public class Main {
             TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
             botsApi.registerBot(new LTSBot(TELEGRAM_BOT_TOKEN, db, translationService));
         } catch (NoSuchElementException e) {
-            e.printStackTrace();
+            System.err.println("""
+                    Create necessary files under data/ directory:
+                    
+                    MYSQL_CREDENTIALS
+                    <username>
+                    <password>
+                    
+                    TELEGRAM_BOT_TOKEN
+                    <token>
+                    
+                    OPENAI_API_KEY
+                    <key>
+                    """);
         }
     }
 }
