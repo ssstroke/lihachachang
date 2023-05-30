@@ -209,7 +209,7 @@ public class LTSBot extends TelegramLongPollingBot {
                 } case State.AWAITS_GAP_FILL -> {
                     Task task = state.getTask();
 
-                    String answer = task.getAnswerOptions()[task.getAnswer()];
+                    String answer = task.getAnswerOptions()[task.getAnswer() - 1];
                     if (messageText.equals(answer)) {
                         user.setPoints(user.getPoints() + task.getPoints());
                         sendText(chatId,
