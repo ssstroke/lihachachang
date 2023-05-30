@@ -242,8 +242,8 @@ public class LTSBot extends TelegramLongPollingBot {
                         db.updateState(state);
 
                         sendText(user.getChatId(),
-                                "Слово было добавлено в ваш список!\n" +
-                                        "\nИспользуйте " + answer + " для перевода" +
+                                "Слово было добавлено в ваш список!" +
+                                        "\nИспользуйте '" + answer + "' для перевода" +
                                         "\nИспользуйте /get_word для получения случайного слова");
                     }
                 } case State.AWAITS_WORD_TRANSLATION -> {
